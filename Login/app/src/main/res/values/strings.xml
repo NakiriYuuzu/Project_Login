@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="text_Account">Account</string>
+    <string name="text_Password">Password</string>
+    <string name="btn_Login">Login</string>
+    <string name="btn_Clear">Clear</string>
+</resources>
