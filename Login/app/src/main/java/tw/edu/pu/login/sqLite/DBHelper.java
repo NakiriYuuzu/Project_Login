@@ -63,19 +63,43 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public boolean changeStatus(String username, String password, int status) {
+    public boolean checkUserStatus(String username) {
         SQLiteDatabase myDb = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("username", username);
-        contentValues.put("password", password);
+        contentValues.put("status", 1);
+
+        @SuppressLint("Recycle") Cursor cursor = myDb.rawQuery("Select * from users where username = ?", new String[] {username});
+
+        if (cursor.getCount() > 0) {
+            long result = myDb.update("users", contentValues, "username = ?", new String[]{username});
+            if (result == -1)
+                return false;
+            else
+                return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean changeStatus(String username,int status) {
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
         contentValues.put("status", status);
 
-        long result = myDb.insert("users", null, contentValues);
+        @SuppressLint("Recycle") Cursor cursor = myDb.rawQuery("Select * from users where username = ?", new String[]{username});
 
-        if (result == -1)
+        if (cursor.getCount() > 0) {
+            long result = myDb.update("users", contentValues, "username = ?", new String[]{username});
+            if (result == -1)
+                return false;
+            else
+                return true;
+        }
+        else {
             return false;
-        else
-            return true;
+        }
     }
 }

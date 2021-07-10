@@ -64,12 +64,20 @@ public class LoginActivity extends AppCompatActivity {
             if (user.equals("") || pass.equals("")) {
                 Toast.makeText(this, "Please enter all the fields!", Toast.LENGTH_SHORT).show();
             } else {
-                boolean checkUserPass = db.checkUserPassword(user, pass);
-                if (checkUserPass) {
-                    Toast.makeText(this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
-                    Intent ii = new Intent(getApplicationContext(), SceneActivity.class);
-                    ii.putExtra("ID", user);
-                    startActivity(ii);
+
+                if (db.checkUserPassword(user,pass)) {
+
+                    if (db.checkUserStatus(user)) {
+
+                        db.changeStatus(user, 1);
+                        Toast.makeText(this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
+                        Intent ii = new Intent(getApplicationContext(), SceneActivity.class);
+                        ii.putExtra("ID", user);
+                        startActivity(ii);
+                    }
+                    else {
+                        Toast.makeText(this, "Account is login...", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
