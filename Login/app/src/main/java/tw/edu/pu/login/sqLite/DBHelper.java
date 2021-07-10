@@ -1,5 +1,6 @@
 package tw.edu.pu.login.sqLite;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table users(username TEXT primary key, password TEXT)");
+        db.execSQL("create Table users(username TEXT primary key, password TEXT, status BOOLEAN)");
     }
 
     @Override
@@ -32,6 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         contentValues.put("username", username);
         contentValues.put("password", password);
+        contentValues.put("status", 0);
 
         long result = myDb.insert("users", null, contentValues);
 
@@ -43,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean checkUsername(String username) {
         SQLiteDatabase myDb = this.getWritableDatabase();
-        Cursor cursor = myDb.rawQuery("Select * from users where username = ?", new String[] {username});
+        @SuppressLint("Recycle") Cursor cursor = myDb.rawQuery("Select * from users where username = ?", new String[] {username});
 
         if (cursor.getCount() > 0)
             return true;
@@ -53,11 +55,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean checkUserPassword(String username, String password) {
         SQLiteDatabase myDb = this.getWritableDatabase();
-        Cursor cursor = myDb.rawQuery("Select * from users where username = ? and password = ?", new String[] {username, password});
+        @SuppressLint("Recycle") Cursor cursor = myDb.rawQuery("Select * from users where username = ? and password = ?", new String[] {username, password});
 
         if (cursor.getCount() > 0)
             return true;
         else
             return false;
+    }
+
+    public boolean changeStatus(String username, String password, int status) {
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("username", username);
+        contentValues.put("password", password);
+        contentValues.put("status", status);
+
+        long result = myDb.insert("users", null, contentValues);
+
+        if (result == -1)
+            return false;
+        else
+            return true;
     }
 }

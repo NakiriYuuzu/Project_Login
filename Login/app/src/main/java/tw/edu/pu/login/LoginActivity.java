@@ -10,12 +10,13 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import tw.edu.pu.login.sqLite.DBHelper;
+
 public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText etAcc, etPass;
     MaterialButton btnLogin, btnClear, btnRegister;
-
-    private String acc, pw;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         findView();
+        db = new DBHelper(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,21 +58,28 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginFunction() {
         if (etAcc.getText() != null && etPass.getText() != null) {
-            acc = etAcc.getText().toString();
-            pw = etPass.getText().toString();
+            String user = etAcc.getText().toString();
+            String pass = etPass.getText().toString();
 
-            if (acc.equals("yuuzu") && pw.equals("1234")) {
-                Intent ii = new Intent(getApplicationContext(), SceneActivity.class);
-                startActivity(ii);
-                clearFunction();
+            if (user.equals("") || pass.equals("")) {
+                Toast.makeText(this, "Please enter all the fields!", Toast.LENGTH_SHORT).show();
+            } else {
+                boolean checkUserPass = db.checkUserPassword(user, pass);
+                if (checkUserPass) {
+                    Toast.makeText(this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
+                    Intent ii = new Intent(getApplicationContext(), SceneActivity.class);
+                    ii.putExtra("ID", user);
+                    startActivity(ii);
+
+                } else {
+                    Toast.makeText(this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                }
             }
-            else
-                Toast.makeText(this, acc + ": Login Failed!\nCheck your id and password!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(this, "Please enter your account and password!", Toast.LENGTH_SHORT).show();
             clearFunction();
         }
+
     }
 
     private void clearFunction() {
