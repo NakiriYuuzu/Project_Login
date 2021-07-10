@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">Login</string>
+
     <string name="text_Account">Account</string>
     <string name="text_Password">Password</string>
+    <string name="text_RetypePassword">Retype Password</string>
+
     <string name="btn_Login">Login</string>
     <string name="btn_Clear">Clear</string>
+    <string name="btn_SignUp">Sign Up</string>
+    <string name="btn_Return">Sign Out</string>
+    <string name="btn_Register">Register</string>
+    <string name="btn_Cancel">Cancel</string>
 </resources>
