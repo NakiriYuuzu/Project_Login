@@ -67,8 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (db.checkUserPassword(user,pass)) {
 
-                    if (db.checkUserStatus(user) == 0) {
-
+                    if (db.checkUserStatus(user)) {
                         db.changeStatus(user, 1);
                         Toast.makeText(this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
                         Intent ii = new Intent(getApplicationContext(), SceneActivity.class);

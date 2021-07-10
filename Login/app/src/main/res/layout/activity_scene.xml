@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cute" />
+        app:srcCompat="@drawable/cute1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_SignOut"
