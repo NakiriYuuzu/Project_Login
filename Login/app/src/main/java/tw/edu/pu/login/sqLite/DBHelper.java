@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -19,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table users(username TEXT primary key, password TEXT, status BOOLEAN)");
+        db.execSQL("create Table users(username TEXT primary key, password TEXT, status INTEGER DEFAULT 0)");
     }
 
     @Override
@@ -33,7 +34,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         contentValues.put("username", username);
         contentValues.put("password", password);
-        contentValues.put("status", 0);
 
         long result = myDb.insert("users", null, contentValues);
 
@@ -63,27 +63,27 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public boolean checkUserStatus(String username) {
-        SQLiteDatabase myDb = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+    public int checkUserStatus(String username) {
+        int status;
+        SQLiteDatabase db = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("Select * from users where username = " + " + username " + ";", null);
 
-        contentValues.put("status", 1);
-
-        @SuppressLint("Recycle") Cursor cursor = myDb.rawQuery("Select * from users where username = ?", new String[] {username});
-
-        if (cursor.getCount() > 0) {
-            long result = myDb.update("users", contentValues, "username = ?", new String[]{username});
-            if (result == -1)
-                return false;
-            else
-                return true;
+        if (cursor.moveToFirst()) {
+            status = cursor.getInt(cursor.getColumnIndex("status"));
+            Log.d("TAG", String.valueOf(status));
         }
         else {
-            return false;
+            status = 3;
+            Log.e("TAG", String.valueOf(status));
         }
+
+        cursor.close();
+        db.close();
+
+        return status;
     }
 
-    public boolean changeStatus(String username,int status) {
+    public void changeStatus(String username, int status) {
         SQLiteDatabase myDb = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -93,13 +93,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0) {
             long result = myDb.update("users", contentValues, "username = ?", new String[]{username});
-            if (result == -1)
-                return false;
-            else
-                return true;
-        }
-        else {
-            return false;
         }
     }
 }

@@ -42,6 +42,25 @@ public class SceneActivity extends AppCompatActivity {
     }
 
     private void signOut() {
+        db.changeStatus(user, 0);
         finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        db.changeStatus(user, 1);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        db.changeStatus(user, 0);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.changeStatus(user, 0);
     }
 }
