@@ -8,7 +8,9 @@
     <string name="btn_Login">Login</string>
     <string name="btn_Clear">Clear</string>
     <string name="btn_SignUp">Sign Up</string>
-    <string name="btn_Return">Sign Out</string>
+    <string name="btn_SignOut">Sign Out</string>
     <string name="btn_Register">Register</string>
     <string name="btn_Cancel">Cancel</string>
+    <string name="btn_Conform">Conform</string>
+    <string name="btn_EditProfile">Edit Profile</string>
 </resources>

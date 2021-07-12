@@ -100,4 +100,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 Log.e("TAG_changeStatus", String.valueOf(result));
         }
     }
+
+    public void changePassword(String username, String password) {
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("password", password);
+
+        @SuppressLint("Recycle") Cursor cursor = myDb.rawQuery("Select * from users where username = ?", new String[]{username});
+
+        if (cursor.getCount() > 0) {
+            long result = myDb.update("users", contentValues, "username = ?", new String[]{username});
+            if (result == -1)
+                Log.e("TAG_changePassword", String.valueOf(result));
+        }
+    }
 }

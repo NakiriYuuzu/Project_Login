@@ -1,49 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootLogin"
+    android:id="@+id/rootSignUp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField_Account"
+        android:id="@+id/outlinedTextField_Pass_SignUp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="31dp"
-        android:hint="@string/text_Account"
-        app:boxCornerRadiusBottomEnd="15dp"
-        app:boxCornerRadiusBottomStart="15dp"
-        app:boxCornerRadiusTopEnd="15dp"
-        app:boxCornerRadiusTopStart="15dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
-        app:helperText="You can enter Account here"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etAcc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField_Pass"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="210dp"
         android:layout_marginEnd="31dp"
         android:hint="@string/text_Password"
         app:boxCornerRadiusBottomEnd="15dp"
@@ -56,10 +28,40 @@
         app:helperText="You can enter Password here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Account">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPass"
+            android:id="@+id/etPass_ep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField_Repass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="31dp"
+        android:hint="@string/text_RetypePassword"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:endIconMode="password_toggle"
+        app:helperText="You can enter Retype Password here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Pass_SignUp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRepass_ep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -67,20 +69,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnConform"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="31dp"
         android:layout_marginTop="30dp"
-        android:text="@string/btn_Login"
+        android:text="@string/btn_Conform"
         app:cornerRadius="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Pass" />
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Repass" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnClear"
+        android:id="@+id/btnCancel_ep"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -89,34 +91,19 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="31dp"
         android:layoutDirection="rtl"
-        android:text="@string/btn_Clear"
+        android:text="@string/btn_Cancel"
         app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Pass" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_Register"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="31dp"
-        android:text="@string/btn_Register"
-        app:cornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Pass" />
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField_Repass" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
         android:layout_marginTop="31dp"
-        android:text="@string/btn_Login"
+        android:text="@string/btn_EditProfile"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -124,4 +111,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvUsername_ep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/text_Account"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
