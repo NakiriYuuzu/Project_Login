@@ -8,16 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
 import tw.edu.pu.login.sqLite.DBHelper;
 
-public class SceneActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     MaterialTextView tvUser;
     MaterialButton btnSignOut, btnEditProfile;
-    ImageView iv;
+    LottieAnimationView lottieBike, lottiePu, lottieBeacon;
     DBHelper db;
 
     private String user;
@@ -27,7 +28,7 @@ public class SceneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scene);
+        setContentView(R.layout.activity_main);
 
         //
         findView();
@@ -41,6 +42,28 @@ public class SceneActivity extends AppCompatActivity {
 
         //
         tvUser.setText("Welcome: " + user);
+
+        //TODO
+        lottieBike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+
+        lottiePu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+
+        lottieBeacon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         //
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -58,25 +81,15 @@ public class SceneActivity extends AppCompatActivity {
                 signOut();
             }
         });
-
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int img = getResources().getIdentifier("cute" + loopImg, "drawable", getPackageName());
-                iv.setImageResource(img);
-                loopImg++;
-                if (loopImg >= 8) {
-                    loopImg = 1;
-                }
-            }
-        });
     }
 
     private void findView() {
         btnSignOut = findViewById(R.id.btn_SignOut);
         btnEditProfile = findViewById(R.id.btn_EditProfile);
-        iv = findViewById(R.id.imageView);
         tvUser = findViewById(R.id.tvUsername_main);
+        lottieBike = findViewById(R.id.lottieBike);
+        lottiePu = findViewById(R.id.lottiePu);
+        lottieBeacon = findViewById(R.id.lottieBeacon);
     }
 
     private void signOut() {

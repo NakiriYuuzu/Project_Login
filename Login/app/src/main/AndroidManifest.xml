@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Login">
         <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".SceneActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
