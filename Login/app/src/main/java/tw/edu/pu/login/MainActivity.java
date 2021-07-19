@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.button.MaterialButton;
@@ -47,21 +46,23 @@ public class MainActivity extends AppCompatActivity {
         lottieBike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Intent ii = new Intent(getApplicationContext(), UBikeActivity.class);
+                startActivity(ii);
             }
         });
 
         lottiePu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Intent ii = new Intent(getApplicationContext(), TravelActivity.class);
+                startActivity(ii);
             }
         });
 
         lottieBeacon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO
             }
         });
 
