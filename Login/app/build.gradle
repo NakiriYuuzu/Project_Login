@@ -38,4 +38,5 @@ dependencies {
 
     //lottie Animation
     implementation "com.airbnb.android:lottie:3.7.2"
+    implementation "com.android.volley:volley:1.2.0"
 }
